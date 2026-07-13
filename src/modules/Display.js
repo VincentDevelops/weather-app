@@ -1,13 +1,9 @@
 export class Display {
-    constructor(WeatherData) {
-        this.WeatherData = WeatherData;
-    }
+  constructor(weatherData) {
+    this.weatherData = weatherData;
+  }
 
-    init() {
-        throw new Error("Display.init not defined");
-    }
-
-    update() {
-        throw new Error("Display.init not defined");
-    }
+  update() {
+    throw new Error("Display.init not defined");
+  }
 }

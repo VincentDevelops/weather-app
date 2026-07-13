@@ -1,113 +1,131 @@
 import { WeatherData } from "./WeatherData.js";
 
 export class VisualCrossingWebServices extends WeatherData {
-    constructor() {
-        super();
-        this.VISUAL_CROSSING_KEY = "7VLVREEC3H5CBE55XZYG5THLB";
-    }
+  constructor() {
+    super();
+    this.VISUAL_CROSSING_KEY = "7VLVREEC3H5CBE55XZYG5THLB";
+  }
 
-    async fetchWeatherFromCity(city) {
-      try {
-        if (city === null || city.trim() === "") throw new Error("Empty search");
+  async fetchWeatherFromCity(city) {
+    try {
+      if (city === null || city.trim() === "") throw new Error("Empty search");
 
-        const response = await fetch(
-                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${this.VISUAL_CROSSING_KEY}`,
+      const response = await fetch(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${this.VISUAL_CROSSING_KEY}`,
+      );
+
+      if (response.error) {
+        throw new Error(
+          "Network Error: Could not connect to Visual Crossing API",
         );
-
-        if (response.error) throw new Error("Network Error: Could not connect to Visual Crossing API",);
-
-        this.data = await response.json();
-
-        console.log(this.data);
-
-        return this.data;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    getTemperature() {
-      if (this.data === null) {
-        throw Error("data not initialized")
       }
 
-      return this.data.currentConditions.temp;
+      this.data = await response.json();
+
+      console.log(this.data);
+
+      return this.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getTemperature() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getHumidity() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
-      return this.data.currentConditions.humidity;
+    return this.data.currentConditions.temp;
+  }
+
+  getCondition() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getWind() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.currentConditions.conditions;
+  }
 
-      return this.data.currentConditions.windspeed;
+  getFeelsLike() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getPressure() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.currentConditions.feelslike;
+  }
 
-      return this.data.currentConditions.pressure;
+  getHumidity() {
+    if (this.data === null) {
+      throw Error("data not initialized");
+    }
+    return this.data.currentConditions.humidity;
+  }
+
+  getWind() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getVisibility() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.currentConditions.windspeed;
+  }
 
-      return this.data.currentConditions.visibility
+  getPressure() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getUvIndex() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.currentConditions.pressure;
+  }
 
-      return this.data.currentConditions.uvindex;
+  getVisibility() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getForecast() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.currentConditions.visibility;
+  }
 
-      return this.data.days;
+  getUvIndex() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getSunriseTime() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.currentConditions.uvindex;
+  }
 
-      return this.data.currentConditions.sunrise;
+  getForecast() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getSunsetTime() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.days;
+  }
 
-      return this.data.currentConditions.sunset;
+  getSunriseTime() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getChanceOfRain() {
-      if (this.data === null) {
-        throw Error("data not initialized")
-      }
+    return this.data.currentConditions.sunrise;
+  }
 
-      return this.data.currentConditions.precipprob;
+  getSunsetTime() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
-    getDate() {
-      return new Date();
+    return this.data.currentConditions.sunset;
+  }
+
+  getChanceOfRain() {
+    if (this.data === null) {
+      throw Error("data not initialized");
     }
 
+    return this.data.currentConditions.precipprob;
+  }
 
+  getDate() {
+    return new Date();
+  }
 }

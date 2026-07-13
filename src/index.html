@@ -6,29 +6,320 @@
     <title>Weather App</title>
   </head>
   <body>
-    <input class="input" type="text" placeholder="Enter City Name" />
-    <button class="search">Search</button>
-    <!-- <img src="#" /> -->
-    <span class="humidity"></span>
-    <span class="wind"></span>
-    <span class="pressure"></span>
-    <span class="visibility"></span>
-    <span class="uv-index"></span>
-    <button class="f">F</button>
-    <button class="c">C</button>
+    <div class="page-container">
+      <nav>
+        <div class="nav__info">
+          <h3 class="logo">Vince</h3>
+          <button class="nav__temp-type-button">C/F</button>
+        </div>
+        <div class="nav__search">
+          <img
+            src="./assets/icons/magnifying-glass-svgrepo-com.svg"
+            alt="search button"
+            class="nav__icon icon"
+          />
+          <input type="search" class="nav__search-input" />
+          <button class="nav__search-button">Search</button>
+        </div>
+      </nav>
 
-    <!-- <div class="day-card">
-      <span class="day"></span>
-      <span class="date"></span>
-      <img src="#" alt="" class="weather-icon" />
-      <span class="degree-f"></span>
-      <span class="defree-c"></span>
+      <main>
+        <section class="current-display">
+          <div class="current-display__header">
+            <h1 class="current-display__header__location">New York, USA</h1>
+            <p class="current-display__header-date-time">Sunday June 12 2026</p>
+          </div>
+
+          <div class="current-display__main">
+            <div class="current-display__main__conditions">
+              <img
+                src="./assets/icons/rain-drops-svgrepo-com.svg"
+                alt=""
+                class="current-display__main-image image"
+              />
+              <div class="current-display__main__temp-status">
+                <h1 class="current-display__main__temp-status__temp">72</h1>
+                <div class="current-display__main__temp-status__descriptions">
+                  <span
+                    class="current-display__main__temp-status__description__condition"
+                  >
+                    Partly Cloudy
+                  </span>
+                  <span
+                    class="current-display__main__temp-status__description__feels-like"
+                  >
+                    Feels like 80
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="current-display__day-stats">
+              <div class="current-display__day-status">
+                <img
+                  src="./assets/icons/droplet-svgrepo-com.svg"
+                  alt="humidity icon"
+                  class="current-display__icon"
+                />
+                <span class="current-display__day-status__title">Humidity</span>
+                <span class="current-display__day-status__data">56%</span>
+              </div>
+
+              <div class="current-display__day-status">
+                <img
+                  src="./assets/icons/wind-svgrepo-com (2).svg"
+                  alt="wind icon"
+                  class="current-display__icon"
+                />
+                <span class="current-display__day-status__title">Wind</span>
+                <span class="current-display__day-status__data">56%</span>
+              </div>
+
+              <div class="current-display__day-status">
+                <img
+                  src="./assets/icons/gauge-svgrepo-com.svg"
+                  alt="pressure icon"
+                  class="current-display__icon"
+                />
+                <span class="current-display__day-status__title">Pressure</span>
+                <span class="current-display__day-status__data">56%</span>
+              </div>
+
+              <div class="current-display__day-status">
+                <img
+                  src="./assets//icons/eye-svgrepo-com.svg"
+                  alt="visibility icon"
+                  class="current-display__icon"
+                />
+                <span class="current-display__day-status__title"
+                  >Visibility</span
+                >
+                <span class="current-display__day-status__data">56%</span>
+              </div>
+
+              <div class="current-display__day-status">
+                <img
+                  src="./assets/icons/sun-svgrepo-com.svg"
+                  alt="UV Index icon"
+                  class="current-display__icon"
+                />
+                <span class="current-display__day-status__title">UV Index</span>
+                <span class="current-display__day-status__data">56%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="current-display__day-stats">
+            <div class="current-display__day-status">
+              <img
+                src="./assets/icons/droplet-svgrepo-com.svg"
+                alt="humidity icon"
+                class="current-display__icon"
+              />
+              <span class="current-display__day-status__title">Humidity</span>
+              <span class="current-display__day-status__data">56%</span>
+            </div>
+
+            <div class="current-display__day-status">
+              <img
+                src="./assets/icons/wind-svgrepo-com (2).svg"
+                alt="wind icon"
+                class="current-display__icon"
+              />
+              <span class="current-display__day-status__title">Wind</span>
+              <span class="current-display__day-status__data">56%</span>
+            </div>
+
+            <div class="current-display__day-status">
+              <img
+                src="./assets/icons/gauge-svgrepo-com.svg"
+                alt="pressure icon"
+                class="current-display__icon"
+              />
+              <span class="current-display__day-status__title">Pressure</span>
+              <span class="current-display__day-status__data">56%</span>
+            </div>
+
+            <div class="current-display__day-status">
+              <img
+                src="./assets//icons/eye-svgrepo-com.svg"
+                alt="visibility icon"
+                class="current-display__icon"
+              />
+              <span class="current-display__day-status__title">Visibility</span>
+              <span class="current-display__day-status__data">56%</span>
+            </div>
+
+            <div class="current-display__day-status">
+              <img
+                src="./assets/icons/sun-svgrepo-com.svg"
+                alt="UV Index icon"
+                class="current-display__icon"
+              />
+              <span class="current-display__day-status__title">UV Index</span>
+              <span class="current-display__day-status__data">56%</span>
+            </div>
+          </div> -->
+        </section>
+
+        <section class="forecast">
+          <h1 class="forecast__title">7-Day Forecast</h1>
+
+          <div class="forecast__cards">
+            <div class="forecast__cards__card">
+              <div class="forecast__cards__card__day">Sun</div>
+              <div class="forecast__cards__card__date">Jun 12</div>
+              <!-- <img src="" alt="" class="forecast__card__img"> -->
+              <div class="forecast__cards__card__max-temp">78</div>
+              <div class="forecast__cards__card__min-temp">62</div>
+            </div>
+
+            <div class="forecast__cards__card">
+              <div class="forecast__cards__card__day">Sun</div>
+              <div class="forecast__cards__card__date">Jun 12</div>
+              <!-- <img src="" alt="" class="forecast__card__img"> -->
+              <div class="forecast__cards__card__max-temp">78</div>
+              <div class="forecast__cards__card__min-temp">62</div>
+            </div>
+
+            <div class="forecast__cards__card">
+              <div class="forecast__cards__card__day">Sun</div>
+              <div class="forecast__cards__card__date">Jun 12</div>
+              <!-- <img src="" alt="" class="forecast__card__img"> -->
+              <div class="forecast__cards__card__max-temp">78</div>
+              <div class="forecast__cards__card__min-temp">62</div>
+            </div>
+
+            <div class="forecast__cards__card">
+              <div class="forecast__cards__card__day">Sun</div>
+              <div class="forecast__cards__card__date">Jun 12</div>
+              <!-- <img src="" alt="" class="forecast__card__img"> -->
+              <div class="forecast__cards__card__max-temp">78</div>
+              <div class="forecast__cards__card__min-temp">62</div>
+            </div>
+
+            <div class="forecast__cards__card">
+              <div class="forecast__cards__card__day">Sun</div>
+              <div class="forecast__cards__card__date">Jun 12</div>
+              <!-- <img src="" alt="" class="forecast__card__img"> -->
+              <div class="forecast__cards__card__max-temp">78</div>
+              <div class="forecast__cards__card__min-temp">62</div>
+            </div>
+
+            <div class="forecast__cards__card">
+              <div class="forecast__cards__card__day">Sun</div>
+              <div class="forecast__cards__card__date">Jun 12</div>
+              <!-- <img src="" alt="" class="forecast__card__img"> -->
+              <div class="forecast__cards__card__max-temp">78</div>
+              <div class="forecast__cards__card__min-temp">62</div>
+            </div>
+
+            <div class="forecast__cards__card">
+              <div class="forecast__cards__card__day">Sun</div>
+              <div class="forecast__cards__card__date">Jun 12</div>
+              <!-- <img src="" alt="" class="forecast__card__img"> -->
+              <div class="forecast__cards__card__max-temp">78</div>
+              <div class="forecast__cards__card__min-temp">62</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="highlights">
+          <h1 class="highlights__title">Today's Highlights</h1>
+          <div class="highlights__cards">
+            <div
+              class="highlights__cards__card highlights__cards__card__sunrise"
+            >
+              <img
+                src="./assets/icons/sunrise-svgrepo-com.svg"
+                alt="sunrise icon"
+                class="highlights__cards__card__img"
+              />
+              <div class="highlights__cards__card__details">
+                <span
+                  class="highlights__cards__card__sunrise__title highlights__cards__card__title"
+                >
+                  Sunrise
+                </span>
+
+                <span class="highlights__cards__card__sunrise__time">
+                  5:25AM
+                </span>
+              </div>
+            </div>
+
+            <div
+              class="highlights__cards__card highlights__cards__card__sunset"
+            >
+              <img
+                src="./assets/icons/sunset-svgrepo-com.svg"
+                alt="sunset icon"
+                class="highlights__cards__card__img"
+              />
+              <div class="highlights__cards__card__details">
+                <span
+                  class="highlights__cards__card__sunset__title highlights__cards__card__title"
+                >
+                  Sunset
+                </span>
+
+                <span class="highlights__cards__card__sunset__time">
+                  8:30PM
+                </span>
+              </div>
+            </div>
+
+            <div class="highlights__cards__card highlights__cards__card__rain">
+              <img
+                src="./assets/icons/rain-svgrepo-com (1).svg"
+                alt="chance of rain icon"
+                class="highlights__cards__card__img"
+              />
+              <div class="highlights__cards__card__details">
+                <span
+                  class="highlights__cards__card__rain__title highlights__cards__card__title"
+                >
+                  CoR
+                </span>
+
+                <span class="highlights__cards__card__rain__time"> 10% </span>
+              </div>
+            </div>
+
+            <div class="highlights__cards__card highlights__cards__card__UV">
+              <img
+                src="./assets/icons/uv-index-alt-svgrepo-com.svg"
+                alt="uv index icon"
+                class="highlights__cards__card__img"
+              />
+              <div class="highlights__cards__card__details">
+                <span
+                  class="highlights__cards__card__UV__title highlights__cards__card__title"
+                >
+                  UV Index
+                </span>
+
+                <span class="highlights__cards__card__UV__time"> 5 </span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <h1 class="footer__title">Vince</h1>
+        <ul class="footer__links">
+          <a href="./pages/about.html" class="footer__links__link">About</a>
+          <a class="footer__links__link" href="https://vincentdevelops.com"
+            >VincentDevelops.com</a
+          >
+          <a
+            class="footer__links__link"
+            href="https://github.com/vincentdevelops"
+            >GitHub</a
+          >
+        </ul>
+      </footer>
     </div>
-
-    <div class="high-card">
-      <img src="#" alt="" class="weather-icon" />
-      <span class="type"></span>
-      <span class="time"></span>
-    </div> -->
   </body>
 </html>

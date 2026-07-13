@@ -2,7 +2,6 @@ import { Subject } from "./Subject.js";
 
 //psuedo interface
 export class WeatherData extends Subject {
-
   constructor() {
     super();
     this.data = null;
@@ -30,12 +29,20 @@ export class WeatherData extends Subject {
     this.observers.forEach((observer) => observer.update());
   }
 
+  getCondition() {
+    throw new Error("WeatherData.getConditions not defined");
+  }
+
   getTemperature() {
     throw new Error("WeatherData.getTemperature not defined");
   }
 
   getHumidity() {
     throw new Error("WeatherData.getHumidity not defined");
+  }
+
+  getFeelsLike() {
+    throw new Error("WeatherData.getFeelsLike not defined");
   }
 
   getWind() {
@@ -63,7 +70,7 @@ export class WeatherData extends Subject {
   }
 
   getSunsetTime() {
-    throw new Error("WeatherData.getSunsetTime not defined");  
+    throw new Error("WeatherData.getSunsetTime not defined");
   }
 
   getChanceOfRain() {
@@ -77,6 +84,4 @@ export class WeatherData extends Subject {
   async fetchWeatherFromCity() {
     throw new Error("WeatherData.fetchWeatherFromcity not defined");
   }
-
 }
-
