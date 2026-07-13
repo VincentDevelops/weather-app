@@ -15,16 +15,20 @@
 
   --error: #ff1b1c;
   --active: #3772ff;
-  --success: #426a5a;
+  --success: #379634;
   --primary: #f0fff1;
   --secondary: #f5a65b;
 
   font-family: "Inter", "sans-serif";
 }
 
+html,
+body {
+  min-height: 100%;
+}
+
 body {
   background-color: white;
-  height: 100vh;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -51,13 +55,13 @@ nav {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../assets/images/cloudy.jpg");
-  min-height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: black;
   color: var(--primary);
   align-items: center;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .nav__info {
@@ -87,18 +91,73 @@ nav {
   opacity: 75%;
 }
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.nav__search-wrapper {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+.nav__search__wrapper-loading {
+  background-image: conic-gradient(
+    from var(--angle),
+    transparent 10%,
+    var(--active)
+  );
+  animation: 3s spin linear infinite;
+}
+
+.nav__search__wrapper-success {
+  background-color: var(--success);
+}
+
+.nav__search__wrapper-error {
+  background-color: var(--error);
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
 .nav__search {
   border: 1px solid rgb(0, 0, 0, 0.25);
   display: flex;
+  background-color: var(--primary);
   flex-direction: row;
   align-items: center;
-  gap: var(--gap);
+  gap: 5px;
   padding: 5px;
   border-radius: 3px;
-  background-color: var(--primary);
-  align-self: center;
-  width: 100%;
+  position: relative;
+  z-index: 0;
 }
+
+/* loading animation */
+/* .nav__search::after {
+  content: "";
+  position: absolute;
+  width: 101%;
+  height: 110%;
+  background-color: red;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 3px;
+  z-index: -1;
+} */
 
 .nav__search-input {
   width: 100%;
@@ -135,6 +194,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  padding: var(--padding);
+  border-radius: 10px;
 }
 
 .current-display__header {
@@ -231,6 +293,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  padding: var(--padding);
+  border-radius: 10px;
 }
 
 .forecast__title {
@@ -242,7 +307,9 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: var(--gap);
+  justify-content: center;
+  border-radius: 10px;
 }
 
 .forecast__cards__card {
@@ -252,6 +319,7 @@ main {
   border-radius: 3px;
   padding: var(--padding);
   align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
 }
 
 .forecast__cards__card__day {
@@ -275,6 +343,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  border-radius: 10px;
+  padding: var(--padding);
 }
 
 .highlights__title {
@@ -361,7 +432,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100%;
 }
 
@@ -380,11 +451,17 @@ main {
   padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .footer__links__link {
   text-decoration: none;
+  text-decoration: underline;
   color: var(--primary);
+}
+
+.footer__links__link:hover {
+  filter: brightness(150%);
 }
 
 @media (min-width: 768px) {
@@ -395,6 +472,9 @@ main {
 
   .logo {
     font-size: var(--step-3);
+  }
+
+  .page-container {
   }
 
   .nav__search {
@@ -416,9 +496,7 @@ main {
 
   .current-display__main {
     flex-direction: row;
-    min-width: 600px;
-    max-width: 800px;
-    gap: calc(var(--gap) * 2);
+    justify-content: space-around;
   }
 
   .current-display__icon {
@@ -428,7 +506,6 @@ main {
 
   .current-display__main__conditions {
     width: auto;
-    gap: var(--gap);
   }
 
   .current-display__main-image {
