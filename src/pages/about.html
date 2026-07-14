@@ -105,14 +105,14 @@
           First of all we have our <code>WeatherData</code> object which is a
           makeshift interface. It essentially says "I don't care what API you
           use, just make sure you have these functions". I implemented it using
-          <code>VisualCrossingWeatherData</code> which uses the Visual Crossing
+          VisualCrossingWeatherData which uses the Visual Crossing
           API to get information regarding weather at specific locations.
-          <code>VisualCrossingWeatherData</code> is our Subject/Observable and
+          VisualCrossingWeatherData is our Subject/Observable and
           when changed, will update all its subscribers with the new
           information.<br /><br />
 
           We also have three sections, each one a <code>Display</code> type,
-          <code>CurrentConditionsDisplay</code>, <code>ForecastDisplay</code>,
+          CurrentConditionsDisplay, <code>ForecastDisplay</code>,
           and <code>HighlightsDisplay</code>. Similarly to WeatherData each one
           of these implements a <code>Display</code> "interface".<br /><br />
 
