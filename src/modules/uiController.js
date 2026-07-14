@@ -67,6 +67,8 @@ export const uiController = (() => {
       currentConditionsDisplay.changeDegreeType();
       forecastDisplay.changeDegreeType();
     });
+
+    searchCity("Los Angeles");
   }
 
   function search() {
