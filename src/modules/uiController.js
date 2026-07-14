@@ -122,6 +122,8 @@ export const uiController = (() => {
     searchWrapper.classList.remove("nav__search__wrapper-loading");
     searchWrapper.classList.remove("nav__search__wrapper-error");
     searchWrapper.classList.add("nav__search__wrapper-success");
+    searchInput.value = "";
+    searchInput.blur();
     setTimeout(() => {
       searchWrapper.classList.remove("nav__search__wrapper-success");
     }, 1500);
