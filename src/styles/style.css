@@ -42,6 +42,10 @@ nav {
   width: 100%;
 }
 
+.hide {
+  display: none;
+}
+
 .icon {
   width: var(--step-0);
   height: var(--step-0);
@@ -212,7 +216,7 @@ main {
   font-weight: 500;
 }
 
-.current-display__header-date-time {
+.current-display__header__date-time {
   margin: 0;
   font-size: var(--step--1);
 }
@@ -320,10 +324,12 @@ main {
   padding: var(--padding);
   align-items: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  gap: var(--gap);
 }
 
 .forecast__cards__card__day {
   font-weight: 600;
+  margin-bottom: -12px;
 }
 
 .forecast__cards__card__date {
@@ -333,6 +339,7 @@ main {
 }
 
 .forecast__cards__card__max-temp {
+  margin-top: auto;
   font-weight: 600;
 }
 
@@ -368,7 +375,7 @@ main {
   padding: var(--padding);
   gap: var(--gap);
   align-items: center;
-  min-width: 100px;
+  flex: 1;
   border-radius: 3px;
 }
 
@@ -388,6 +395,7 @@ main {
   align-items: center;
   margin-top: auto;
   gap: var(--gap);
+  text-align: center;
 }
 
 .highlights__cards__card__title {
@@ -477,6 +485,11 @@ main {
   .page-container {
   }
 
+  .nav__search-wrapper {
+    padding: 3px;
+    border-radius: 10px;
+  }
+
   .nav__search {
     max-width: 800px;
     border-radius: 5px;
@@ -496,7 +509,7 @@ main {
 
   .current-display__main {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .current-display__icon {
@@ -516,7 +529,7 @@ main {
   .current-display__day-stats {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    flex: 1;
     justify-content: center;
     gap: var(--gap);
   }

@@ -4,17 +4,53 @@ export class ForecastDisplay extends Display {
   constructor(weatherData, elements) {
     super(weatherData);
     this.elements = elements;
+    this.iconElements = elements.map((card) =>
+      card.querySelector(".forecast__card__img"),
+    );
+    this.maxTempElements = elements.map((card) =>
+      card.querySelector(".forecast__cards__card__max-temp"),
+    );
+    this.minTempElements = elements.map((card) =>
+      card.querySelector(".forecast__cards__card__min-temp"),
+    );
+    this.dayNameElements = elements.map((card) =>
+      card.querySelector(".forecast__cards__card__day"),
+    );
+
+    this.dayDateElements = elements.map((card) =>
+      card.querySelector(".forecast__cards__card__date"),
+    );
   }
 
-  update() {
-    this.displayToConsole();
+  async update() {
+    const forecast = this.weatherData.getForecast();
+    for (let i = 0; i < Math.min(7, this.elements.length); i++) {
+      this.maxTempElements[i].textContent = forecast[i].tempmax + "°";
+      this.minTempElements[i].textContent = forecast[i].tempmin + "°";
+      const date = new Date(`${forecast[i].datetime}T00:00:00`);
+      this.dayNameElements[i].textContent = date.toLocaleDateString("en-US", {
+        weekday: "short",
+      });
 
-    // const forecast = this.weatherData.getForecast();
-    // for (let i = 0; i < Math.min(7, this.elements.length), i++) {
-    //     this.elements[i].forecastDayDate.textContent = forecast[i].datetime;
-    //     this.elements[i].forecastTempMax.textContent = forecast[i].tempmax;
-    //     this.elements[i].forecastTempMin.textContent = forecast[i].tempmin;
-    // }
+      this.dayDateElements[i].textContent = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      });
+
+      try {
+        const iconName = forecast[i].icon;
+
+        const iconModule = await import(
+          `../assets/weather-icons/${iconName}.svg`
+        );
+
+        this.iconElements[i].src = iconModule.default;
+        this.iconElements[i].classList.remove("hide");
+      } catch (error) {
+        console.log(error);
+        this.iconElements[i].classList.add("hide");
+      }
+    }
   }
 
   displayToConsole() {

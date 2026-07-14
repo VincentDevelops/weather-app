@@ -81,6 +81,10 @@ export class WeatherData extends Subject {
     throw new Error("WeatherData.getDate not defined");
   }
 
+  getIcon() {
+    throw new Error("WeatherData.getIcon not defined");
+  }
+
   async fetchWeatherFromCity() {
     throw new Error("WeatherData.fetchWeatherFromcity not defined");
   }

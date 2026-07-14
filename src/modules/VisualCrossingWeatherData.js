@@ -1,6 +1,6 @@
 import { WeatherData } from "./WeatherData.js";
 
-export class VisualCrossingWebServices extends WeatherData {
+export class VisualCrossingWeatherData extends WeatherData {
   constructor() {
     super();
     this.VISUAL_CROSSING_KEY = "7VLVREEC3H5CBE55XZYG5THLB";
@@ -14,20 +14,43 @@ export class VisualCrossingWebServices extends WeatherData {
         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${this.VISUAL_CROSSING_KEY}`,
       );
 
-      if (response.error) {
-        throw new Error(
-          "Network Error: Could not connect to Visual Crossing API",
-        );
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
       }
 
       this.data = await response.json();
+
+      if (!this.data || !this.data.currentConditions) {
+        throw new Error("No weather data found");
+      }
 
       console.log(this.data);
 
       return this.data;
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
+  }
+
+  getLocation() {
+    if (this.data === null) {
+      throw Error("data not initialized");
+    }
+
+    const sentenceLower = this.data.address.toLowerCase();
+
+    const sentenceProper = sentenceLower
+      // split the sentence into words
+      .split(" ")
+      // split each word into letters; capitalise the first and recombine the rest without a space
+      .map(
+        ([firstLetter, ...otherLetters]) =>
+          `${firstLetter.toUpperCase()}${otherLetters.join("")}`,
+      )
+      // reform the words into a sentence with spaces in-between
+      .join(" ");
+
+    return sentenceProper;
   }
 
   getTemperature() {
@@ -126,6 +149,34 @@ export class VisualCrossingWebServices extends WeatherData {
   }
 
   getDate() {
-    return new Date();
+    if (this.data === null) {
+      throw Error("data not initialized");
+    }
+    const formattedDate = new Date().toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    return formattedDate;
+  }
+
+  getIcon() {
+    if (this.data === null) {
+      throw Error("data not initialized");
+    }
+
+    return this.data.currentConditions.icon;
+  }
+
+  getTimeEpoch() {
+    if (this.data === null) {
+      throw Error("data not initialized");
+    }
+
+    return this.data.currentConditions.datetimeEpoch;
   }
 }
