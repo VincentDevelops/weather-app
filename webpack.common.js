@@ -20,6 +20,11 @@ export default {
       filename: "index.html",
       chunks: ["app"],
     }),
+    new HtmlWebpackPlugin({
+      template: "./src/pages/about.html",
+      filename: "about.html",
+      chunks: ["app"],
+    }),
   ],
   module: {
     rules: [

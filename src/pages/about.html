@@ -5,7 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    code {
+      color: rgb(93, 255, 93);
+    }
+  </style>
   <body>
-    test
+    <div class="page-container">
+      <div
+        class="about-page"
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          padding: 2rem;
+          width: min(100%, 800px);
+          box-sizing: border-box;
+        "
+      >
+        <a
+          href="../index.html"
+          style="
+            color: white;
+            font-size: var(--step-2);
+            text-decoration: underline;
+          "
+          >Home</a
+        >
+        <h1 style="font-size: var(--step-4); align-self: center">
+          About Vince
+        </h1>
+        <img
+          src="../assets/images/selfie.jpg"
+          alt="vince selfie"
+          style="
+            border-radius: 100%;
+            border: 2px solid white;
+            height: 200px;
+            width: 200px;
+            align-self: center;
+          "
+        />
+
+        <p
+          style="font-size: var(--step-2); font-weight: 300; text-align: center"
+        >
+          Hey, I'm Vince!<br />
+          I'm a comp sci student finishing up a B.S. at WGU. I love programming
+          and have been having fun following along the Odin Project. This
+          project took me a couple of days and here's how I did it... in a
+          fairly unorganized way. If I have some extra time I'll make a more
+          thorough post about it on my site,
+          <a style="color: white" href="https://vincentdevelops.com"
+            >vincentdevelops.com</a
+          >.
+        </p>
+
+        <h3 style="font-size: var(--step-3); margin-bottom: -20px">
+          The Styling
+        </h3>
+
+        <p style="font-size: var(--step-2); font-weight: 300; text-align: left">
+          The style of the site was influenced heavily by the design pattern I
+          wanted to implement; we'll go into design details in the Architecture
+          section. I wanted it to be simple and straightforward to look at. You
+          want to know the temperature... well there it is.<br /><br />
+
+          Icons were found
+          <a
+            style="color: white"
+            href="https://github.com/visualcrossing/WeatherIcons/tree/main"
+            >here</a
+          >, and if you're working on this project too I cannot stress enough
+          how easy this made parts of the project. Definitely recommend! Anyway,
+          I'm not the best designer and I still can't tell if I like it or not
+          (leaning towards no), but there it is.
+        </p>
+
+        <h3 style="font-size: var(--step-3); margin-bottom: -20px">
+          The Architecture
+        </h3>
+
+        <p style="font-size: var(--step-2); font-weight: 300; text-align: left">
+          I've recently been going over some design patterns and thought I'd
+          practice with them. The base of this project lives on the Observer
+          pattern. If you're interested in design patterns I really recommend
+          <a
+            style="color: white"
+            href="https://www.oreilly.com/library/view/head-first-design/9781492077992/"
+          >
+            Head First Design Patterns</a
+          >, it's a great book for beginners. A quick recap if you're not
+          familiar with the Observer patttern:<br /><br />
+
+          The Observer Pattern logically a one-to-many dependency between
+          objects so that when one object changes state, all of its dependents
+          are notified and updated automatically. That's basically it.<br /><br />
+
+          First of all we have our <code>WeatherData</code> object which is a
+          makeshift interface. It essentially says "I don't care what API you
+          use, just make sure you have these functions". I implemented it using
+          <code>VisualCrossingWeatherData</code> which uses the Visual Crossing
+          API to get information regarding weather at specific locations.
+          <code>VisualCrossingWeatherData</code> is our Subject/Observable and
+          when changed, will update all its subscribers with the new
+          information.<br /><br />
+
+          We also have three sections, each one a <code>Display</code> type,
+          <code>CurrentConditionsDisplay</code>, <code>ForecastDisplay</code>,
+          and <code>HighlightsDisplay</code>. Similarly to WeatherData each one
+          of these implements a <code>Display</code> "interface".<br /><br />
+
+          Each Display type takes in a <code>WeatherData</code> object and
+          because I've implemented an interface style, we know what functions
+          we'll call to get the data we need. So in this way, it doesn't matter
+          if we're using Visual Crossing, or another API. So long as we
+          implement WeatherData with whichever other API we want to use, it will
+          work. It makes it incredibly simple and although slightly tedious to
+          implement, very easy to modify/reuse.<br /><br />
+
+          When a user enters a location and hits enter, or clicks search, our
+          observer updates all our subscribers. Of course it does this after it
+          has ly completed an asynchronous call to the API.<br /><br />
+
+          The rest of the project is simply connecting elements to JS in order
+          to change them on updates. The biggest hurdle, personally, was finding
+          weather icons! Thankfully
+          <a
+            style="color: white"
+            href="https://github.com/visualcrossing/WeatherIcons/tree/main"
+            >this repo</a
+          >
+          has everything you need! The icons provided are named exactly as the
+          "icon" names Visual Crossing provides on the API call.<br /><br />
+
+          There are a few things I'd improve if I revisted the project,
+          specifcially I would have planned the Fahrenheit/Celsius toggle from
+          the beginning instead of adding it near the end. It wasn't difficult
+          to implement, but it would've ended with cleaner code. I'll like
+          refactor some of that. Overall though I'm fairly happy with how it
+          turned out, it was pretty fun actually.<br><br>
+
+          Here are a few links I found helpful along the way
+          <ul style="list-style: none; font-size: var(--step-2); color: white; display: flex; flex-direction: column; gap: var(--gap);">
+            <li>
+              <a style="color: white" href="https://github.com/visualcrossing/WeatherIcons/tree/main">
+                GitHub: Free Weather Icons
+              </a>
+            </li>
+            <li>
+              <a style="color: white;" href="https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import">
+                Article: Dynamically importing images at runtime with Webpack
+              </a>
+            </li>
+            <li>
+              <a style="color: white;" href="https://www.youtube.com/watch?v=ezP4kbOvs_E">
+                Video: Loading Animation (border animation)
+              </a>
+            </li>
+          </ul>
+        </p>
+
+        <a
+          href="https://vincentdevelops.com"
+          style="
+            color: white;
+            font-size: var(--step-2);
+            text-decoration: underline;
+          "
+          >VincentDevelops.com</a
+        >
+        <a
+          href="https://github.com/vincentdevelops"
+          style="
+            color: white;
+            font-size: var(--step-2);
+            text-decoration: underline;
+          "
+          >GitHub/VincentDevelops</a
+        >
+      </div>
+    </div>
   </body>
 </html>

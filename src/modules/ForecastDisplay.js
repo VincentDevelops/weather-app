@@ -3,6 +3,8 @@ import { Display } from "./Display.js";
 export class ForecastDisplay extends Display {
   constructor(weatherData, elements) {
     super(weatherData);
+    this.tempType = "F";
+
     this.elements = elements;
     this.iconElements = elements.map((card) =>
       card.querySelector(".forecast__card__img"),
@@ -25,8 +27,19 @@ export class ForecastDisplay extends Display {
   async update() {
     const forecast = this.weatherData.getForecast();
     for (let i = 0; i < Math.min(7, this.elements.length); i++) {
-      this.maxTempElements[i].textContent = forecast[i].tempmax + "°";
-      this.minTempElements[i].textContent = forecast[i].tempmin + "°";
+      let tempMax = forecast[i].tempmax;
+      let tempMin = forecast[i].tempmin;
+
+      if (this.tempType === "F") {
+        this.maxTempElements[i].textContent = forecast[i].tempmax + "°";
+        this.minTempElements[i].textContent = forecast[i].tempmin + "°";
+      } else {
+        tempMax = this.convertToC(tempMax);
+        tempMin = this.convertToC(tempMin);
+        this.maxTempElements[i].textContent = tempMax + "°";
+        this.minTempElements[i].textContent = tempMin + "°";
+      }
+
       const date = new Date(`${forecast[i].datetime}T00:00:00`);
       this.dayNameElements[i].textContent = date.toLocaleDateString("en-US", {
         weekday: "short",
@@ -51,6 +64,19 @@ export class ForecastDisplay extends Display {
         this.iconElements[i].classList.add("hide");
       }
     }
+  }
+
+  convertToC(value) {
+    value = Number(value);
+    value = (value - 32) * (5 / 9);
+    value = Math.trunc(value * 10) / 10;
+    return value;
+  }
+
+  changeDegreeType() {
+    if (this.tempType === "F") this.tempType = "C";
+    else this.tempType = "F";
+    this.update();
   }
 
   displayToConsole() {

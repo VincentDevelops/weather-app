@@ -3,6 +3,7 @@ import { Display } from "./Display.js";
 export class CurrentConditionsDisplay extends Display {
   constructor(weatherData, elements) {
     super(weatherData);
+    this.tempType = "F";
 
     this.location = elements.location;
     this.dateTimeElement = elements.date;
@@ -15,21 +16,35 @@ export class CurrentConditionsDisplay extends Display {
     this.visibilityElement = elements.visibility;
     this.uvIndexElement = elements.uvIndex;
     this.iconElement = elements.icon;
+    this.backgroundElement = elements.background;
     console.log(this.iconElement);
   }
 
   async update() {
     this.location.textContent = this.weatherData.getLocation();
     this.dateTimeElement.textContent = this.weatherData.getDate();
-    this.tempElement.textContent = this.weatherData.getTemperature() + "°";
     this.conditionElement.textContent = this.weatherData.getCondition();
-    this.feelsLikeElement.textContent =
-      "Feels like " + this.weatherData.getFeelsLike() + "°";
-    this.humidityElement.textContent = this.weatherData.getHumidity();
-    this.windElement.textContent = this.weatherData.getWind();
+    this.humidityElement.textContent = this.weatherData.getHumidity() + "%";
+    this.windElement.textContent = this.weatherData.getWind() + "mph";
     this.pressureElement.textContent = this.weatherData.getPressure();
-    this.visibilityElement.textContent = this.weatherData.getVisibility();
+    this.visibilityElement.textContent =
+      this.weatherData.getVisibility() + "mi";
     this.uvIndexElement.textContent = this.weatherData.getUvIndex();
+
+    let temp = this.weatherData.getTemperature();
+
+    if (this.tempType === "F") {
+      this.tempElement.textContent = this.weatherData.getTemperature() + "°";
+      this.feelsLikeElement.textContent =
+        "Feels like " + this.weatherData.getFeelsLike() + "°";
+    } else {
+      temp = this.weatherData.getTemperature();
+      temp = Number(temp);
+      temp = (temp - 32) * (5 / 9);
+      temp = Math.trunc(temp);
+      this.tempElement.textContent = temp + "°";
+      this.feelsLikeElement.textContent = "Feels like " + temp + "°";
+    }
 
     const iconName = this.weatherData.getIcon();
 
@@ -42,6 +57,12 @@ export class CurrentConditionsDisplay extends Display {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  changeDegreeType() {
+    if (this.tempType === "F") this.tempType = "C";
+    else this.tempType = "F";
+    this.update();
   }
 
   displayToConsole() {

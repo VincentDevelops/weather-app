@@ -42,6 +42,12 @@ export const uiController = (() => {
   const searchWrapper = document.querySelector(".nav__search-wrapper");
   const searchInput = document.querySelector(".nav__search-input");
   const searchButton = document.querySelector(".nav__search-button");
+  const tempButton = document.querySelector(".nav__temp-type-button");
+
+  searchButton.addEventListener("click", search);
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") search();
+  });
 
   function initialize() {
     const currentConditionsDisplay = new CurrentConditionsDisplay(
@@ -57,12 +63,11 @@ export const uiController = (() => {
     weatherData.registerObserver(currentConditionsDisplay);
     weatherData.registerObserver(forecastDisplay);
     weatherData.registerObserver(highlightsDisplay);
+    tempButton.addEventListener("click", () => {
+      currentConditionsDisplay.changeDegreeType();
+      forecastDisplay.changeDegreeType();
+    });
   }
-
-  searchButton.addEventListener("click", search);
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") search();
-  });
 
   function search() {
     const city = searchInput.value;

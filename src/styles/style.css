@@ -231,6 +231,7 @@ main {
   display: flex;
   flex-direction: row;
   width: 100%;
+  gap: var(--gap);
 }
 
 .current-display__main-image {
@@ -265,9 +266,6 @@ main {
   opacity: 75%;
 }
 
-.current-display__day-stats {
-}
-
 .current-display__day-status {
   width: 100%;
   display: flex;
@@ -282,9 +280,6 @@ main {
   width: var(--step--1);
   filter: invert(93%) sepia(10%) saturate(361%) hue-rotate(88deg)
     brightness(104%) contrast(110%);
-}
-
-.current-display__day-status__title {
 }
 
 .current-display__day-status__data {
@@ -332,18 +327,9 @@ main {
   margin-bottom: -12px;
 }
 
-.forecast__cards__card__date {
-}
-
-.forecast__card__img {
-}
-
 .forecast__cards__card__max-temp {
   margin-top: auto;
   font-weight: 600;
-}
-
-.forecast__cards__card__min-temp {
 }
 
 .highlights {
@@ -386,9 +372,6 @@ main {
     brightness(104%) contrast(110%);
 }
 
-.highlights__cards__card__sunrise {
-}
-
 .highlights__cards__card__details {
   display: flex;
   flex-direction: column;
@@ -402,38 +385,8 @@ main {
   text-align: center;
 }
 
-.highlights__cards__card__sunrise__title {
-}
-
-.highlights__cards__card__sunrise__time {
-}
-
-.highlights__cards__card__sunset {
-}
-
-.highlights__cards__card__sunset__title {
-}
-
-.highlights__cards__card__sunset__time {
-}
-
-.highlights__cards__card__rain {
-}
-
-.highlights__cards__card__rain__title {
-}
-
-.highlights__cards__card__rain__time {
-}
-
 .highlights__cards__card__UV {
   text-align: center;
-}
-
-.highlights__cards__card__UV__title {
-}
-
-.highlights__cards__card__UV__time {
 }
 
 .footer {
@@ -480,9 +433,6 @@ main {
 
   .logo {
     font-size: var(--step-3);
-  }
-
-  .page-container {
   }
 
   .nav__search-wrapper {
