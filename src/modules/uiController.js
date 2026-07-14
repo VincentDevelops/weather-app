@@ -44,7 +44,10 @@ export const uiController = (() => {
   const searchButton = document.querySelector(".nav__search-button");
   const tempButton = document.querySelector(".nav__temp-type-button");
 
-  searchButton.addEventListener("click", search);
+  searchButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    search();
+  });
   searchInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") search();
   });
@@ -73,6 +76,7 @@ export const uiController = (() => {
 
   function search() {
     const city = searchInput.value;
+    searchInput.blur();
     initLoading();
     searchCity(city);
   }
@@ -123,7 +127,6 @@ export const uiController = (() => {
     searchWrapper.classList.remove("nav__search__wrapper-error");
     searchWrapper.classList.add("nav__search__wrapper-success");
     searchInput.value = "";
-    searchInput.blur();
     setTimeout(() => {
       searchWrapper.classList.remove("nav__search__wrapper-success");
     }, 1500);
